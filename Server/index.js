@@ -1,8 +1,9 @@
 const express = require("express");
 const connectDB = require('./db.js');
-
-const PORT = 8080;
+const router = require('./routers/user.js');
 const application = express();
+const route = express.Router();
+const PORT = 8080;
 
 application.get('/', (req,res) =>{
     return res.json({
@@ -17,6 +18,8 @@ application.get('/home',(req,res) =>{
         message : 'This is home page'
     })
 })
+
+route.use('/user',router);
 
 application.listen(PORT, (error) => {
     if(!error){
